@@ -1,0 +1,27 @@
+#
+# makefile for StartDaemon, Borland MAKE
+#
+
+# -5      Pentium Instructions
+# -C      Allow nested comments
+# -Ox     Optimizations
+# -d      Merge duplicate strings
+# -Wx     Create Windows app
+# -RT     Generate RTTI
+
+PRJ = StartDaemon
+
+CFLAGS = -5 -C -O1 -d -WU -RT-
+RM = del
+
+all: $(PRJ).exe
+
+$(PRJ).exe: $(PRJ).cpp
+	$(CC) $(CFLAGS) -WC $(PRJ).cpp noeh32.lib
+	upx -q -q --lzma --compress-icons=0 $(PRJ).exe
+
+clean:
+	$(RM) $(PRJ).obj
+	$(RM) $(PRJ).tds
+	$(RM) $(PRJ).exe
+
